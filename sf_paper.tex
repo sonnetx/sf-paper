@@ -654,6 +654,26 @@ The cooldown fraction metric (fraction of expected thermal decay
 observed) partially mitigates this. Runs with cooldown fraction
 $< 0.7$ are flagged as unreliable.
 
+\paragraph{Inter-cluster portability.}
+The H100~SXM5 is the only GPU type measured on two independent
+clusters, allowing a direct concordance check.
+Sherlock yields $0.030 \pm 0.002$\,K/W across ten runs on multiple
+nodes; Schmidt yields $0.036 \pm 0.004$\,K/W across five runs all on
+node~g0378.
+The 20\% offset is statistically significant (approximately 3$\sigma$
+above the Sherlock mean) and likely reflects facility-level
+differences: server chassis design, direct-liquid-cooling supply
+temperature, and the fact that all Schmidt measurements come from a
+single node rather than a spread of nodes.
+Crucially, if the Sherlock baseline were applied directly to Schmidt,
+the healthy Schmidt GPUs would sit at $1.2\times$ the reference
+median and would approach the WARN threshold without any real
+degradation.
+This confirms that per-cluster re-calibration is necessary before
+deploying thresholds, even for identical GPU models, and that
+$Z_\text{th,max}$ captures facility-level cooling variation as well
+as package-level degradation.
+
 \paragraph{Absolute vs.\ relative thresholds.}
 The current WARN/FAIL thresholds are relative to the fleet median.
 If an entire GPU type degrades slowly over time, the median drifts
