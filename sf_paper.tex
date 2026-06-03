@@ -350,21 +350,26 @@ following steps.
 The final output is $Z_\text{th,max}$ (the plateau value of
 $Z_\text{th}$), $P_\text{dissipated}$, the full $Z_\text{th}$ and
 SF curves, and the set of detected peak times.
-Figure~\ref{fig:zth_curves} shows representative outputs from three
-GPUs spanning the anomaly range observed in deployment.
+Figure~\ref{fig:zth_curves} shows the $Z_\text{th}(t)$ curve and
+its corresponding cumulative structure function for the H100~SXM5.
 
 \begin{figure*}[tb]
   \centering
   \includegraphics[width=\textwidth]{figs/fig_zth_curves.pdf}
   \caption{%
-    Transient thermal impedance $Z_\text{th}(t)$ (left) and differential
-    structure function $\text{SF}(t)$ (right) for three representative GPUs.
-    The healthy H100~SXM5 (blue) and healthy A6000 (green) plateau at
-    0.036 and 0.052\,K/W, consistent with their respective fleet medians.
-    The anomalous A6000 from soal-10 GPU~4 (red, dashed) plateaus at
-    0.121\,K/W, $2.35\times$ the type median, while its SF curve
-    shows a broader, later-peaking response characteristic of a degraded
-    die-to-spreader thermal layer.
+    Transient thermal impedance $Z_\text{th}(t)$ (left) and the corresponding
+    cumulative structure function in resistance--capacitance space (right) for
+    the Schmidt Sciences H100~SXM5.
+    The structure function is derived from the parametric mapping
+    $R(t) = Z_\text{th}(t)$, $C(t) = t/Z_\text{th}(t)$, which traces the
+    heat-flow path from die to ambient as cumulative thermal resistance (K/W)
+    and cumulative thermal capacitance (J/K).
+    The steep near-vertical segment at low $C$ ($\lesssim$50\,J/K) represents
+    the low-capacitance, high-resistance die and TIM layers; the shallower
+    rightward extension ($C \sim 100$--400\,J/K) represents the large-mass
+    liquid-cooling loop.
+    A GPU with degraded TIM would show a taller steep segment, shifting the
+    entire curve upward and increasing $Z_\text{th,max}$.
   }
   \label{fig:zth_curves}
 \end{figure*}
